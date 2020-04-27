@@ -32,7 +32,7 @@ namespace CustomItem
             if (Input.GetKeyDown(KeyCode.F2))
             {
                 var dropEList = Run.instance.availableEquipmentDropList;
-                var nextEquipmentItem = Run.instance.treasureRng.RangeInt(0, dropEList.Count);
+                var nextEquipmentItem = dropEList.Count - 1;
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
                 PickupDropletController.CreatePickupDroplet(dropEList[nextEquipmentItem], transform.position, transform.forward * 20f);
             }

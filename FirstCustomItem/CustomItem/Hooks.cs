@@ -10,31 +10,15 @@ namespace CustomItem
     {
         internal static void Init()
         {
-            On.RoR2.HealthComponent.TakeDamage += delegate (On.RoR2.HealthComponent.orig_TakeDamage orig, RoR2.HealthComponent self, RoR2.DamageInfo damageInfo)
+            On.RoR2.EquipmentSlot.PerformEquipmentAction += delegate(On.RoR2.EquipmentSlot.orig_PerformEquipmentAction orig, RoR2.EquipmentSlot slot, RoR2.EquipmentIndex index)
             {
-                int itemCount = self.body.inventory.GetItemCount(Assets.BiscoLeashItemIndex);
-                if (itemCount > 0)
+                if (index == Assets.BiscoLeashEquipmentIndex)
                 {
-                    RoR2.Chat.AddMessage(damageInfo.dotIndex.ToString());
-                    if (damageInfo.dotIndex == RoR2.DotController.DotIndex.Burn || damageInfo.dotIndex == RoR2.DotController.DotIndex.PercentBurn)
-                    {
-                        Random randomChance = new Random();
-                        if (randomChance.NextDouble() >= (float)itemCount * 0.1)
-                        {
-                            RoR2.Chat.AddMessage("Running Original TakeDamage");
-                            orig(self, damageInfo);
-                        }
-                    }
-                    
-                    else
-                    {
-                        orig(self, damageInfo);
-                    }
+                    BuffIndex buffIndex = RoR2.BuffCatalog.FindBuffIndex("Immune");
+                    slot.characterBody.AddTimedBuff(buffIndex, 2);
                 }
-                else
-                {
-                    orig(self, damageInfo);
-                }
+
+                return orig(slot, index);
             };
         }
     }
