@@ -29,6 +29,10 @@ namespace CustomItem
                     if (biscoLeashItem)
                     {
                         attackerBody.healthComponent.TakeDamage(damageInfo);
+                        
+                        //add entangle debuff to attacker
+                        BuffIndex entangleIndex = RoR2.BuffCatalog.FindBuffIndex("Entangle");
+                        attackerBody.AddTimedBuff(entangleIndex, 3);
                     }
                     else
                     {
@@ -43,8 +47,9 @@ namespace CustomItem
 
                 if (equipmentIndex == Assets.BiscoLeashEquipmentIndex)
                 {
+                    //add immunity buff to player for 3s
                     BuffIndex buffIndex = RoR2.BuffCatalog.FindBuffIndex("Immune");
-                    self.characterBody.AddTimedBuff(buffIndex, 2);
+                    self.characterBody.AddTimedBuff(buffIndex, 3);
                     Thread timedBiscoLeashThread = new Thread(
                         () => TimeBiscoLeash()
                     );
@@ -54,11 +59,11 @@ namespace CustomItem
 
             };
 
-            // We want to deflect damage for 2 seconds
+            // We want to deflect damage for 3 seconds
             void TimeBiscoLeash()
             {
                 biscoLeashItem = true;
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
                 biscoLeashItem = false;
             }
         }
