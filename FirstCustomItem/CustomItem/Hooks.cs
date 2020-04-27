@@ -1,42 +1,60 @@
 ﻿using IL.RoR2;
 using IL.RoR2.Orbs;
 using On.RoR2;
+using Rewired;
 using RoR2;
 using System;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace CustomItem
 {
     public class Hooks
     {
+
         internal static void Init()
         {
+            // Item that causes damage to be returned
+            // Causes damage dealers to be stunned
+            // Gives immunity to user
+            bool biscoLeashItem = false;
             On.RoR2.HealthComponent.TakeDamage += delegate (On.RoR2.HealthComponent.orig_TakeDamage orig, RoR2.HealthComponent self, RoR2.DamageInfo damageInfo)
             {
-                int itemCount = self.body.inventory.GetItemCount(Assets.BiscoLeashItemIndex);
-                if (itemCount > 0)
+                RoR2.CharacterBody playerBody = self.body;
+                RoR2.EquipmentIndex index = playerBody.inventory.currentEquipmentIndex;
+                if (index == Assets.BiscoLeashEquipmentIndex)
                 {
-                    RoR2.Chat.AddMessage(damageInfo.dotIndex.ToString());
-                    if (damageInfo.dotIndex == RoR2.DotController.DotIndex.Burn || damageInfo.dotIndex == RoR2.DotController.DotIndex.PercentBurn)
+                    RoR2.CharacterBody attackerBody = damageInfo.attacker.GetComponent<RoR2.CharacterBody>();
+                    if (biscoLeashItem)
                     {
-                        Random randomChance = new Random();
-                        if (randomChance.NextDouble() >= (float)itemCount * 0.1)
-                        {
-                            RoR2.Chat.AddMessage("Running Original TakeDamage");
-                            orig(self, damageInfo);
-                        }
+                        attackerBody.healthComponent.TakeDamage(damageInfo);
                     }
-                    
                     else
                     {
                         orig(self, damageInfo);
                     }
                 }
-                else
-                {
-                    orig(self, damageInfo);
-                }
+                orig(self, damageInfo);
             };
+
+            On.RoR2.EquipmentSlot.PerformEquipmentAction += delegate (On.RoR2.EquipmentSlot.orig_PerformEquipmentAction orig, RoR2.EquipmentSlot self, RoR2.EquipmentIndex equipmentIndex)
+            {
+
+                if (equipmentIndex == Assets.BiscoLeashEquipmentIndex)
+                {
+                    Thread timedBiscoLeashThread = new Thread(
+                        () => TimeBiscoLeash()
+                    );
+                }
+                return orig(self, equipmentIndex);
+            };
+
+            void TimeBiscoLeash()
+            {
+                biscoLeashItem = true;
+                Thread.Sleep(5000);
+                biscoLeashItem = false;
+            }
         }
     }
 }
-    
