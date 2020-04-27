@@ -6,13 +6,13 @@ Development goals:
 
 ## Custom Item Mods
 ### FirstCustomItem
-**Ver**: 1.0.0
-**Item Type**: Equipment
-**Description**: All damage &amp; debuffs are negated and targeted towards the attacker, who is then stunned. Grants immunity during this time.
-**Thunderstore Link**: TBA
+**Ver**: 1.0.0 \n
+**Item Type**: Equipment \n
+**Description**: All damage &amp; debuffs are negated and targeted towards the attacker, who is then stunned. Grants immunity during this time. \n
+**Thunderstore Link**: TBA \n
 
 ## Updating README.md
-When merging a feature into **master**, make sure to update this **README.md** file as well. 
+When merging a feature into **master**, make sure to update this **README.md** file as well.
 
 ## Useful Links
 - [Modding Wiki Homepage](https://github.com/risk-of-thunder/R2Wiki/wiki)
