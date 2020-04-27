@@ -42,11 +42,14 @@ namespace CustomItem
 
                 if (equipmentIndex == Assets.BiscoLeashEquipmentIndex)
                 {
+                    BuffIndex buffIndex = RoR2.BuffCatalog.FindBuffIndex("Immune");
+                    self.characterBody.AddTimedBuff(buffIndex, 2);
                     Thread timedBiscoLeashThread = new Thread(
                         () => TimeBiscoLeash()
                     );
                 }
                 return orig(self, equipmentIndex);
+
             };
 
             void TimeBiscoLeash()
