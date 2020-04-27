@@ -24,6 +24,7 @@ namespace CustomItem
                 RoR2.EquipmentIndex index = playerBody.inventory.currentEquipmentIndex;
                 if (index == Assets.BiscoLeashEquipmentIndex)
                 {
+                    // Direct all damage to attacker
                     RoR2.CharacterBody attackerBody = damageInfo.attacker.GetComponent<RoR2.CharacterBody>();
                     if (biscoLeashItem)
                     {
@@ -47,15 +48,17 @@ namespace CustomItem
                     Thread timedBiscoLeashThread = new Thread(
                         () => TimeBiscoLeash()
                     );
+                    timedBiscoLeashThread.Start();
                 }
                 return orig(self, equipmentIndex);
 
             };
 
+            // We want to deflect damage for 2 seconds
             void TimeBiscoLeash()
             {
                 biscoLeashItem = true;
-                Thread.Sleep(5000);
+                Thread.Sleep(2000);
                 biscoLeashItem = false;
             }
         }
