@@ -5,16 +5,16 @@ using R2API.Utils;
 using UnityEngine;
 using RoR2;
 
-namespace CustomItem
+namespace Thornmail
 {
     [BepInDependency(R2API.R2API.PluginGUID)]
     [R2APISubmoduleDependency(nameof(ItemAPI), nameof(ItemDropAPI), nameof(ResourcesAPI))]
     [BepInPlugin(ModGuid, ModName, ModVer)]
     public class CustomItem : BaseUnityPlugin
     {
-        private const string ModVer = "1.0.0";
-        private const string ModName = "MyCustomItemPlugin";
-        public const string ModGuid = "com.MyName.MyCustomItemPlugin";
+        private const string ModVer = "0.0.1";
+        private const string ModName = "Thornmail";
+        public const string ModGuid = "com.MyName.Thornmail";
 
         internal new static ManualLogSource Logger; // allow access to the logger across the plugin classes
 
@@ -29,19 +29,15 @@ namespace CustomItem
 
         public void Update()
         {
+            // TODO: Remove this section of code when modding is done.
+            // To enable easier testing, F2 will drop the newest added item. 
             if (Input.GetKeyDown(KeyCode.F2))
             {
                 var dropEList = Run.instance.availableEquipmentDropList;
+                // When items are added to the availableEquipmentDropList, it is appended to the second last item in the droplist
                 var nextEquipmentItem = dropEList.Count - 1;
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
                 PickupDropletController.CreatePickupDroplet(dropEList[nextEquipmentItem], transform.position, transform.forward * 20f);
-            }
-            if (Input.GetKeyDown(KeyCode.F3))
-            {
-                var drop3List = Run.instance.availableTier3DropList;
-                var next3Item = Run.instance.treasureRng.RangeInt(0, drop3List.Count);
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-                PickupDropletController.CreatePickupDroplet(drop3List[next3Item], transform.position, transform.forward * 20f);
             }
         }
     }
