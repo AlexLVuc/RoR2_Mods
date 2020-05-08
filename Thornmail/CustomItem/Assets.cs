@@ -19,7 +19,7 @@ namespace Thornmail
             // First registering your AssetBundle into the ResourcesAPI with a modPrefix that'll also be used for your prefab and icon paths
             // note that the string parameter of this GetManifestResourceStream call will change depending on
             // your namespace and file name
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Thornmail.rampage")) 
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Thornmail.exampleitemmod")) 
             {
                 var bundle = AssetBundle.LoadFromStream(stream);
                 var provider = new AssetBundleResourcesProvider(ModPrefix.TrimEnd(':'), bundle);
@@ -27,34 +27,33 @@ namespace Thornmail
 
                 ThornmailPrefab = bundle.LoadAsset<GameObject>("Assets/Import/belt/belt.prefab");
             }
-
             ThornmailAsEquipment();
         }
 
         private static void ThornmailAsEquipment()
         {
-            var ThornmailEquipmentDef = new EquipmentDef
+            var ThornmailEquipmentDef = new RoR2.EquipmentDef
             {
-                name = "Thornmail", // its the internal name, no spaces, apostrophes and stuff like that
+                name = "ThornmailEquipment",
                 cooldown = 5f,
                 pickupModelPath = PrefabPath,
                 pickupIconPath = IconPath,
-                nameToken = "Thornmail", // stylised name
+                nameToken = "Thornmail Equipment",
                 pickupToken = "Grants <style=cIsUtility>immunity</style> and <style=cIsUtility>reflects</style> all incoming attacks back to the attacker. Attackers are also <style=cIsUtility>entangled</style>. <style=cStack>(3s Equipment Duration)</style>",
                 descriptionToken = "Grants <style=cIsUtility>immunity</style> and <style=cIsUtility>reflects</style> all incoming attacks back to the attacker. Attackers are also <style=cIsUtility>entangled</style>. <style=cStack>(3s Equipment Duration)</style>",
-                loreToken = "Welcome to the League of Legends!",
+                loreToken = "When sitting down in quarantine for a month they asked themselves 'how should I be productive?' and thus, Thornmail was created.",
                 canDrop = true,
-                enigmaCompatible = false
+                enigmaCompatible = true
             };
 
-            var itemDisplayRules = new ItemDisplayRule[1]; // keep this null if you don't want the item to show up on the survivor 3d model. You can also have multiple rules !
-            itemDisplayRules[0].followerPrefab = ThornmailPrefab; // the prefab that will show up on the survivor
-            itemDisplayRules[0].childName = "Chest"; // this will define the starting point for the position of the 3d model, you can see what are the differents name available in the prefab model of the survivors
-            itemDisplayRules[0].localScale = new Vector3(0.15f, 0.15f, 0.15f); // scale the model
-            itemDisplayRules[0].localAngles = new Vector3(0f, 180f, 0f); // rotate the model
-            itemDisplayRules[0].localPos = new Vector3(-0.35f, -0.1f, 0f); // position offset relative to the childName, here the survivor Chest
+            var defaultDisplayRule = new ItemDisplayRule[1];
+            defaultDisplayRule[0].followerPrefab = ThornmailPrefab;
+            defaultDisplayRule[0].childName = "Chest";
+            defaultDisplayRule[0].localScale = new Vector3(20f, 20f, 20f);
+            defaultDisplayRule[0].localAngles = new Vector3(0f, 0f, 0f);
+            defaultDisplayRule[0].localPos = new Vector3(0.0f, 0f, 0f);
 
-            var thornmail = new CustomEquipment(ThornmailEquipmentDef, itemDisplayRules);
+            var thornmail = new CustomEquipment(ThornmailEquipmentDef, defaultDisplayRule);
 
             ThornmailEquipmentIndex = ItemAPI.Add(thornmail);
         }

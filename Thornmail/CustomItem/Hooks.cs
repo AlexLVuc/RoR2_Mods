@@ -6,6 +6,7 @@ using RoR2;
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using UnityEngine;
 
 namespace Thornmail
 {
@@ -25,11 +26,24 @@ namespace Thornmail
                     RoR2.CharacterBody attackerBody = damageInfo.attacker.GetComponent<RoR2.CharacterBody>();
                     if (thornmailTimer)
                     {
-                        attackerBody.healthComponent.TakeDamage(damageInfo);
+                        // Modify the damage info to set the attacker as the player
+                        // We do this to enable money to be gained from attacker death
+                        RoR2.DamageInfo modifiedDamageInfo = damageInfo;
+                        RoR2.LocalUser firstLocalUser = RoR2.LocalUserManager.GetFirstLocalUser();
+                        GameObject player = firstLocalUser.cachedBody.gameObject;
+
+                        modifiedDamageInfo.attacker = player;
+                        modifiedDamageInfo.inflictor = player;
+
+                        attackerBody.healthComponent.TakeDamage(modifiedDamageInfo);
                         
-                        // Add entangle debuff to attacker
-                        BuffIndex entangleIndex = RoR2.BuffCatalog.FindBuffIndex("Entangle");
-                        attackerBody.AddTimedBuff(entangleIndex, 3);
+                        // If attacker survives, give them a debuff them
+                        if (attackerBody.healthComponent.alive)
+                        {
+                            // Add debuff to attacker
+                            BuffIndex buffIndex = RoR2.BuffCatalog.FindBuffIndex("Entangle");
+                            attackerBody.AddTimedBuff(buffIndex, 3);
+                        }
                     }
                     else
                     {
@@ -44,19 +58,22 @@ namespace Thornmail
 
                 if (equipmentIndex == Assets.ThornmailEquipmentIndex)
                 {
-                    //add immunity buff to player for 3s
+                    // Add immunity to player
                     BuffIndex buffIndex = RoR2.BuffCatalog.FindBuffIndex("Immune");
                     self.characterBody.AddTimedBuff(buffIndex, 3);
+
+                    // Timer for figuring out when damage should be reflected
                     Thread timedThornmailThread = new Thread(
                         () => TimeThornmail()
                     );
                     timedThornmailThread.Start();
+                    return true;
                 }
                 return orig(self, equipmentIndex);
 
             };
 
-            // We want to deflect damage for 3 seconds
+            // Use a thread to time when deflections should happen
             void TimeThornmail()
             {
                 thornmailTimer = true;
