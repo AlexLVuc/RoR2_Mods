@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,11 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="rampage" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="rampage" />
+    <None Remove="exampleitemmod" />
   </ItemGroup>
 
   <ItemGroup>
@@ -115,6 +111,10 @@
     <Reference Include="Zio">
       <HintPath>..\libs\Zio.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="exampleitemmod" />
   </ItemGroup>
 
 </Project>
