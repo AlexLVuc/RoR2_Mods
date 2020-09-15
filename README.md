@@ -6,7 +6,7 @@ Development goals:
 
 ## Custom Item Mods
 ### FirstCustomItem
-**Ver**: 1.0.0\
+**Ver**: 0.0.1\
 **Item Type**: Equipment\
 **Description**: All damage &amp; debuffs are negated and targeted towards the attacker, who is then stunned. Grants immunity during this time.\
 **Thunderstore Link**: TBA\
