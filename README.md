@@ -5,11 +5,11 @@ Development goals:
 - Build a custom character into the game with knowledge learned from previous goal
 
 ## Custom Item Mods
-### FirstCustomItem
-**Ver**: 1.0.0\
+### Thornmail
+**Ver**: 0.0.1\
 **Item Type**: Equipment\
-**Description**: All damage &amp; debuffs are negated and targeted towards the attacker, who is then stunned. Grants immunity during this time.\
-**Thunderstore Link**: TBA\
+**Description**: All damage &amp; debuffs are negated and targeted towards the attacker, who is then entangled. Grants immunity during this time.\
+**Thunderstore Link**: TBA
 
 ## Updating README.md
 When merging a feature into **master**, make sure to update this **README.md** file as well.
