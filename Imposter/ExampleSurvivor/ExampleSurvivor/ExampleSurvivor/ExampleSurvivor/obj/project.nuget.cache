@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ak7SOUTiWJqEv+XVJpdEWjzQ37dRM1DHERQ/JGS9oMBCozGd9Hoc9t+WUh0ZE66f6d7kiefnvliRA9bAYe1gGA==",
+  "dgSpecHash": "67qyQCIqFUPS4StHZ6qS+X0X4aeJIqNdbFT4NlMAq5IzmtFrtprapN8+unol+Y4v2iyuLgNn7uecWQi00+/AXQ==",
   "success": true,
-  "projectFilePath": "D:\\RoR2_Mods\\RoR2_Mods\\Templates\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.csproj",
+  "projectFilePath": "D:\\RoR2_Mods\\RoR2_Mods\\Imposter\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alexander\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

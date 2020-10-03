@@ -61,7 +61,7 @@ namespace ExampleSurvivor
         internal static void CreatePrefab()
         {
             // first clone the commando prefab so we can turn that into our own survivor
-            characterPrefab = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody"), "ExampleSurvivorBody", true, "D:\\RoR2_Mods\\RoR2_Mods\\Templates\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.cs", "CreatePrefab", 151);
+            characterPrefab = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody"), "ExampleSurvivorBody", true, "D:\\RoR2_Mods\\RoR2_Mods\\Imposter\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.cs", "CreatePrefab", 151);
 
             characterPrefab.GetComponent<NetworkIdentity>().localPlayerAuthority = true;
 
@@ -322,11 +322,11 @@ namespace ExampleSurvivor
         private void RegisterCharacter()
         {
             // now that the body prefab's set up, clone it here to make the display prefab
-            characterDisplay = PrefabAPI.InstantiateClone(characterPrefab.GetComponent<ModelLocator>().modelBaseTransform.gameObject, "ExampleSurvivorDisplay", true, "D:\\RoR2_Mods\\RoR2_Mods\\Templates\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.cs", "RegisterCharacter", 153);
+            characterDisplay = PrefabAPI.InstantiateClone(characterPrefab.GetComponent<ModelLocator>().modelBaseTransform.gameObject, "ExampleSurvivorDisplay", true, "D:\\RoR2_Mods\\RoR2_Mods\\Imposter\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.cs", "RegisterCharacter", 153);
             characterDisplay.AddComponent<NetworkIdentity>();
 
             // clone rex's syringe projectile prefab here to use as our own projectile
-            arrowProjectile = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/Projectiles/SyringeProjectile"), "Prefabs/Projectiles/ExampleArrowProjectile", true, "D:\\RoR2_Mods\\RoR2_Mods\\Templates\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.cs", "RegisterCharacter", 155);
+            arrowProjectile = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/Projectiles/SyringeProjectile"), "Prefabs/Projectiles/ExampleArrowProjectile", true, "D:\\RoR2_Mods\\RoR2_Mods\\Imposter\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.cs", "RegisterCharacter", 155);
 
             // just setting the numbers to 1 as the entitystate will take care of those
             arrowProjectile.GetComponent<ProjectileController>().procCoefficient = 1f;
@@ -491,7 +491,7 @@ namespace ExampleSurvivor
             // set up the doppelganger for artifact of vengeance here
             // quite simple, gets a bit more complex if you're adding your own ai, but commando ai will do
 
-            doppelganger = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/CharacterMasters/CommandoMonsterMaster"), "ExampleSurvivorMonsterMaster", true, "D:\\RoR2_Mods\\RoR2_Mods\\Templates\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.cs", "CreateDoppelganger", 159);
+            doppelganger = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/CharacterMasters/CommandoMonsterMaster"), "ExampleSurvivorMonsterMaster", true, "D:\\RoR2_Mods\\RoR2_Mods\\Imposter\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.cs", "CreateDoppelganger", 159);
 
             MasterCatalog.getAdditionalEntries += delegate (List<GameObject> list)
             {

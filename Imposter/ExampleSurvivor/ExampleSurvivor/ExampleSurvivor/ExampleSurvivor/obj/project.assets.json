@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RoR2_Mods\\RoR2_Mods\\Templates\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.csproj",
+      "projectUniqueName": "D:\\RoR2_Mods\\RoR2_Mods\\Imposter\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.csproj",
       "projectName": "ExampleSurvivor",
-      "projectPath": "D:\\RoR2_Mods\\RoR2_Mods\\Templates\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.csproj",
+      "projectPath": "D:\\RoR2_Mods\\RoR2_Mods\\Imposter\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor.csproj",
       "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
-      "outputPath": "D:\\RoR2_Mods\\RoR2_Mods\\Templates\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\obj\\",
+      "outputPath": "D:\\RoR2_Mods\\RoR2_Mods\\Imposter\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\ExampleSurvivor\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
